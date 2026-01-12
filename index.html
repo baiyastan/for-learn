@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Цикл - Деталдуу Түшүндүрмө</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .definition {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196F3;
+        }
+
+        .definition strong {
+            color: #2196F3;
+            font-size: 1.1em;
+        }
+
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .example {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .example-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .tip {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .tip strong {
+            color: #17a2b8;
+        }
+
+        .warning {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+        }
+
+        .warning strong {
+            color: #dc3545;
+        }
+
+        .step-by-step {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #4caf50;
+        }
+
+        .step-by-step h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .visual {
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .visual-title {
+            color: #7b1fa2;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .comparison {
+            background: #fff9c4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #fbc02d;
+        }
+
+        .comparison-title {
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .tasks-section {
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            border: 3px solid #667eea;
+        }
+
+        .task-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .level-beginner {
+            background: #4caf50;
+            color: white;
+        }
+
+        .level-intermediate {
+            background: #ff9800;
+            color: white;
+        }
+
+        .level-advanced {
+            background: #f44336;
+            color: white;
+        }
+
+        .task-number {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .task-description {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .task-hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #856404;
+        }
+
+        .task-requirements {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: #1565c0;
+        }
+
+        .task-requirements-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0d47a1;
+        }
+
+        .task-requirements ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .task-requirements li {
+            margin-bottom: 5px;
+        }
+
+        .category {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.8em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin-top: 10px;
+            overflow-x: auto;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔄 For Цикл - Деталдуу Түшүндүрмө</h1>
+            <p>Баштапкы деңгээл үчүн толук жана түшүнүктүү түшүндүрмө</p>
+        </header>
+
+        <div class="content">
+            <!-- Аныктама -->
+            <section>
+                <h2>🎯 For Цикл деген эмне?</h2>
+                
+                <div class="definition">
+                    <strong>For цикл</strong> - бул JavaScript'теги эң кеңири колдонулган цикл түрү. 
+                    Ал кодду белгилүү бир жолу кайталап аткаруу үчүн колдонулат. 
+                    For цикл үч бөлүктөн турат: баштапкы маани, шарт, жана өзгөрүү.
+                </div>
+
+                <h3>Негизги синтаксис:</h3>
+                <div class="example">
+                    <div class="example-title">For циклдин синтаксиси:</div>
+                    <pre><code>for (баштапкы_маани; шарт; өзгөрүү) {
+    // Код - бул жерде кайталанат
+}</code></pre>
+                </div>
+
+                <h3>Жөнөкөй мисал:</h3>
+                <div class="example">
+                    <div class="example-title">Мисал: 1ден 5ке чейин басып чыгаруу</div>
+                    <pre><code>for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+// Натыйжа:
+// 1
+// 2
+// 3
+// 4
+// 5</code></pre>
+                </div>
+            </section>
+
+            <!-- Кадам-кадам түшүндүрмө -->
+            <section>
+                <h2>📚 For Цикл кантип иштейт? (Кадам-кадам)</h2>
+                
+                <div class="step-by-step">
+                    <h4>For циклдин иштөө механизми:</h4>
+                    
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Баштапкы маани (Initialization)</strong>
+                        <p>Цикл башталганда бир жолу аткарылат. Мисалы: <code>let i = 1</code></p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Шартты текшерүү (Condition)</strong>
+                        <p>Ар бир кайталоодон мурун шарт текшерилет. Эгерде шарт <code>true</code> болсо, цикл иштейт. Мисалы: <code>i <= 5</code></p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Кодду аткаруу (Code Execution)</strong>
+                        <p>Шарт чыныгы болсо, циклдин ичиндеги код аткарылат.</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Өзгөрүү (Update)</strong>
+                        <p>Код аткарылгандан кийин өзгөрүү бөлүгү иштейт. Мисалы: <code>i++</code> (i 1ге көбөйөт)</p>
+                    </div>
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>Кайталоо (Repeat)</strong>
+                        <p>2-4 кадамдар шарт жалган болгонго чейин кайталанат.</p>
+                    </div>
+                </div>
+
+                <div class="visual">
+                    <div class="visual-title">📊 Визуалдык мисал:</div>
+                    <pre><code>for (let i = 1; i <= 3; i++) {
+    console.log(i);
+}
+
+// Кадам-кадам:
+// 1. i = 1 (баштапкы маани)
+// 2. i <= 3? → true → console.log(1) → i++ → i = 2
+// 3. i <= 3? → true → console.log(2) → i++ → i = 3
+// 4. i <= 3? → true → console.log(3) → i++ → i = 4
+// 5. i <= 3? → false → ЦИКЛ ТОКТОТ</code></pre>
+                </div>
+            </section>
+
+            <!-- Бөлүктөрдүн деталдуу түшүндүрмөсү -->
+            <section>
+                <h2>🔍 For Циклдин Бөлүктөрү</h2>
+
+                <h3>1. Баштапкы маани (Initialization)</h3>
+                <div class="definition">
+                    <strong>Баштапкы маани</strong> - бул циклдин башталышында бир жолу аткарылат. 
+                    Көбүнчө өзгөрмө түзүп, ага баштапкы маани берет.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Мисалдар:</div>
+                    <pre><code>// 0дон баштатуу
+for (let i = 0; i < 5; i++) { }
+
+// 1ден баштатуу
+for (let i = 1; i <= 5; i++) { }
+
+// 10дон баштатуу
+for (let i = 10; i < 20; i++) { }
+
+// Бир нече өзгөрмө (эскертүү менен)
+for (let i = 0, j = 10; i < 5; i++, j--) { }</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> Массивдерди айланганда, индексти 0дон баштатуу эң жакшы практика, 
+                    анткени массивдин индекстери 0дон башталат.
+                </div>
+
+                <h3>2. Шарт (Condition)</h3>
+                <div class="definition">
+                    <strong>Шарт</strong> - бул логикалык туюнтма. Ар бир кайталоодон мурун текшерилет. 
+                    Эгерде шарт <code>true</code> болсо, цикл иштейт. Эгерде <code>false</code> болсо, цикл токтоп калат.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Мисалдар:</div>
+                    <pre><code>// i 5тен кичине же барабар болгондо
+for (let i = 1; i <= 5; i++) { }
+
+// i 10дон кичине болгондо
+for (let i = 0; i < 10; i++) { }
+
+// i 20ден чоң болгондо
+for (let i = 0; i > 20; i--) { }
+
+// Күрдүү шарт
+for (let i = 0; i < 10 && i !== 5; i++) { }</code></pre>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Эскертүү:</strong> Эгерде шартты туура коюп койбосоңуз, цикл эч качан токтобой калышы мүмкүн! 
+                    Мисалы: <code>for (let i = 0; i >= 0; i++)</code> - бул эч качан токтобойт!
+                </div>
+
+                <h3>3. Өзгөрүү (Update)</h3>
+                <div class="definition">
+                    <strong>Өзгөрүү</strong> - бул ар бир кайталоодон кийин аткарылат. 
+                    Көбүнчө өзгөрмөнүн маанисин өзгөртөт (көбөйтүү, азайтуу, же башка операциялар).
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Мисалдар:</div>
+                    <pre><code>// 1ге көбөйтүү (i++)
+for (let i = 0; i < 5; i++) { }
+
+// 1ге азайтуу (i--)
+for (let i = 10; i > 0; i--) { }
+
+// 2ге көбөйтүү
+for (let i = 0; i < 10; i += 2) { }
+
+// 5ке көбөйтүү
+for (let i = 0; i < 50; i += 5) { }
+
+// 3ке азайтуу
+for (let i = 20; i > 0; i -= 3) { }</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> <code>i++</code> менен <code>i += 1</code> бирдей. 
+                    <code>i += 2</code> дегенди "i = i + 2" дегенди билдирет.
+                </div>
+            </section>
+
+            <!-- Практикалык мисалдар -->
+            <section>
+                <h2>💼 Практикалык Мисалдар</h2>
+
+                <h3>Мисал 1: Жөнөкөй кайталоо</h3>
+                <div class="example">
+                    <div class="example-title">1ден 10го чейин басып чыгаруу:</div>
+                    <pre><code>for (let i = 1; i <= 10; i++) {
+    console.log(i);
+}
+// Натыйжа: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</code></pre>
+                </div>
+
+                <h3>Мисал 2: Массивди айлануу</h3>
+                <div class="example">
+                    <div class="example-title">Массивдин бардык элементтерин басып чыгаруу:</div>
+                    <pre><code>let arr = ['алма', 'банан', 'апельсин'];
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+// Натыйжа:
+// алма
+// банан
+// апельсин</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> Массивди айланганда, <code>i < arr.length</code> колдонуңуз, 
+                    <code>i <= arr.length</code> эмес! Анткени индекстер 0дон башталат, ошондуктан акыркы индекстин мааниси <code>arr.length - 1</code>.
+                </div>
+
+                <h3>Мисал 3: Жуп сандарды басып чыгаруу</h3>
+                <div class="example">
+                    <div class="example-title">2ден 20ге чейинки жуп сандар:</div>
+                    <pre><code>for (let i = 2; i <= 20; i += 2) {
+    console.log(i);
+}
+// Натыйжа: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</code></pre>
+                </div>
+
+                <h3>Мисал 4: Тескери багытта айлануу</h3>
+                <div class="example">
+                    <div class="example-title">Массивди тескери багытта айлануу:</div>
+                    <pre><code>let arr = [1, 2, 3, 4, 5];
+
+for (let i = arr.length - 1; i >= 0; i--) {
+    console.log(arr[i]);
+}
+// Натыйжа: 5, 4, 3, 2, 1</code></pre>
+                </div>
+
+                <h3>Мисал 5: Массивдин суммасын эсептөө</h3>
+                <div class="example">
+                    <div class="example-title">Бардык элементтердин суммасы:</div>
+                    <pre><code>let numbers = [10, 20, 30, 40, 50];
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+}
+
+console.log("Сумма: " + sum); // 150</code></pre>
+                </div>
+
+                <h3>Мисал 6: Эң чоң санды табуу</h3>
+                <div class="example">
+                    <div class="example-title">Массивден максимумду табуу:</div>
+                    <pre><code>let numbers = [5, 12, 8, 130, 44];
+let max = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+        max = numbers[i];
+    }
+}
+
+console.log("Эң чоң сан: " + max); // 130</code></pre>
+                </div>
+
+                <h3>Мисал 7: Элементтерди чыпкалоо</h3>
+                <div class="example">
+                    <div class="example-title">10дон чоң сандарды табуу:</div>
+                    <pre><code>let numbers = [5, 12, 8, 130, 44, 3];
+let result = [];
+
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 10) {
+        result.push(numbers[i]);
+    }
+}
+
+console.log(result); // [12, 130, 44]</code></pre>
+                </div>
+            </section>
+
+            <!-- Өзгөчө учурлар -->
+            <section>
+                <h2>🎨 Өзгөчө Учурлар</h2>
+
+                <h3>1. Бош цикл (бөлүктөр жок)</h3>
+                <div class="example">
+                    <div class="example-title">Бардык бөлүктөрдү циклдин сыртына чыгаруу:</div>
+                    <pre><code>let i = 0;
+for (; i < 5; ) {
+    console.log(i);
+    i++;
+}
+// Натыйжа: 0, 1, 2, 3, 4</code></pre>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Эскертүү:</strong> Бул ыкма кеңири колдонулбайт. 
+                    Мындай учурларда while циклди колдонуу жакшыраак.
+                </div>
+
+                <h3>2. Бир нече өзгөрмө</h3>
+                <div class="example">
+                    <div class="example-title">Эки өзгөрмө менен:</div>
+                    <pre><code>for (let i = 0, j = 10; i < 5; i++, j--) {
+    console.log(i + " - " + j);
+}
+// Натыйжа:
+// 0 - 10
+// 1 - 9
+// 2 - 8
+// 3 - 7
+// 4 - 6</code></pre>
+                </div>
+
+                <h3>3. Вложен циклдер (Nested Loops)</h3>
+                <div class="example">
+                    <div class="example-title">Циклдин ичиндеги цикл:</div>
+                    <pre><code>for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+        console.log(i + " x " + j + " = " + (i * j));
+    }
+}
+// Натыйжа:
+// 1 x 1 = 1
+// 1 x 2 = 2
+// 1 x 3 = 3
+// 2 x 1 = 2
+// 2 x 2 = 4
+// 2 x 3 = 6
+// 3 x 1 = 3
+// 3 x 2 = 6
+// 3 x 3 = 9</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> Вложен циклдерди колдонгондо, ички цикл сырткы циклдин ар бир кайталоосу үчүн толугу менен аткарылат.
+                </div>
+
+                <h3>4. Break менен токтотуу</h3>
+                <div class="example">
+                    <div class="example-title">Белгилүү шартта циклди токтотуу:</div>
+                    <pre><code>for (let i = 1; i <= 10; i++) {
+    if (i === 5) {
+        break; // Циклди токтотуу
+    }
+    console.log(i);
+}
+// Натыйжа: 1, 2, 3, 4
+// (5ке жеткенде токтоп калды)</code></pre>
+                </div>
+
+                <h3>5. Continue менен кайталоону өткөрүп жиберүү</h3>
+                <div class="example">
+                    <div class="example-title">Так сандарды гана басып чыгаруу:</div>
+                    <pre><code>for (let i = 1; i <= 10; i++) {
+    if (i % 2 === 0) {
+        continue; // Бул кайталоону өткөрүп жиберүү
+    }
+    console.log(i);
+}
+// Натыйжа: 1, 3, 5, 7, 9
+// (Жуп сандар өткөрүлдү)</code></pre>
+                </div>
+            </section>
+
+            <!-- Кеңири таралган каталар -->
+            <section>
+                <h2>❌ Кеңири Таралган Каталар</h2>
+
+                <h3>1. Infinite Loop (Токтобой турган цикл)</h3>
+                <div class="warning">
+                    <div class="example-title">Ката:</div>
+                    <pre><code>// Шартты туура коюп койбогон
+for (let i = 0; i >= 0; i++) {
+    console.log(i); // Эч качан токтобойт!
+}
+
+// Өзгөрүүнү унутуп койгон
+for (let i = 0; i < 10; ) {
+    console.log(i); // i эч качан өзгөрбөйт, цикл токтобойт!
+}</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> Infinite loop'ту алдын алуу үчүн:
+                    <ul>
+                        <li>Шартты туура коюңуз</li>
+                        <li>Өзгөрүүнү унутпаңыз</li>
+                        <li>Кодду тест кылып көрүңүз</li>
+                    </ul>
+                </div>
+
+                <h3>2. Массивдин чектен тышкары индекси</h3>
+                <div class="warning">
+                    <div class="example-title">Ката:</div>
+                    <pre><code>let arr = [1, 2, 3];
+
+// i <= arr.length колдонгондо ката
+for (let i = 0; i <= arr.length; i++) {
+    console.log(arr[i]); // arr[3] undefined болот!
+}
+
+// Туура ыкма:
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]); // Токтоо
+}</code></pre>
+                </div>
+
+                <h3>3. Өзгөрмөнү циклдин сыртында колдонуу</h3>
+                <div class="warning">
+                    <div class="example-title">Ката:</div>
+                    <pre><code>for (let i = 0; i < 5; i++) {
+    // Код
+}
+console.log(i); // Error! i циклдин ичинде гана жеткиликтүү</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Кеңеш:</strong> Эгерде өзгөрмөнү циклдин сыртында колдонуу керек болсо, 
+                    аны циклдин сыртында түзүңүз:
+                    <pre><code>let i;
+for (i = 0; i < 5; i++) {
+    // Код
+}
+console.log(i); // 5</code></pre>
+                </div>
+            </section>
+
+            <!-- For vs башка циклдер -->
+            <section>
+                <h2>⚖️ For vs Башка Циклдер</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Цикл</th>
+                            <th>Колдонуу</th>
+                            <th>Артыкчылыктары</th>
+                            <th>Кемчиликтери</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>for</strong></td>
+                            <td>Белгилүү жолу кайталануучу иштер</td>
+                            <td>• Индекске жетүү оңой<br>• Көзөмөлдүү<br>• Кеңири колдонулат</td>
+                            <td>• Көбүрөөк код<br>• Индексти кол менен башкаруу керек</td>
+                        </tr>
+                        <tr>
+                            <td><strong>for...of</strong></td>
+                            <td>Массивдерди, саптарды айлануу</td>
+                            <td>• Жөнөкөй синтаксис<br>• Маани менен түздөн-түз иштейт</td>
+                            <td>• Индекске жетүү кыйын (entries() колдонуу керек)<br>• Объекттер менен түздөн-түз колдонулбайт (Object.keys() же for...in колдонуу керек)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>while</strong></td>
+                            <td>Белгисиз жолу кайталануучу иштер</td>
+                            <td>• Ийкемдүү<br>• Шарттуу токтотуу оңой</td>
+                            <td>• Infinite loop коркунучу<br>• Шартты өзгөртүүнү унутуу оңой</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="comparison">
+                    <div class="comparison-title">📊 Мисал: Массивди айлануу</div>
+                    <pre><code>let arr = [1, 2, 3, 4, 5];
+
+// For цикл менен
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+// For...of менен (жөнөкөйрөөк)
+for (let num of arr) {
+    console.log(num);
+}
+
+// Эки ыкма да бирдей натыйжа берет!</code></pre>
+                </div>
+
+                <h3>📝 Түшүндүрмө: For...of циклдин кемчиликтери</h3>
+                
+                <div class="step-by-step">
+                    <h4>1. "Индекске жетүү кыйын" деген эмне?</h4>
+                    <div class="step">
+                        <p><strong>Проблема:</strong> For...of цикл массивдин элементтеринин маанилери менен гана иштейт, индекстери менен эмес.</p>
+                        <div class="example">
+                            <div class="example-title">Мисал - Индекске муктаж болгондо:</div>
+                            <pre><code>let arr = ['алма', 'банан', 'апельсин'];
+
+// For...of менен - индекске жетүү кыйын
+for (let meyve of arr) {
+    // Бул жерде индексти билбейбиз!
+    console.log(meyve); // Маани гана бар
+}
+
+// For цикл менен - индекске оңой жетүү
+for (let i = 0; i < arr.length; i++) {
+    console.log(i + ": " + arr[i]); // Индекс менен маани бар
+    // Натыйжа: "0: алма", "1: банан", "2: апельсин"
+}</code></pre>
+                        </div>
+                        <div class="tip">
+                            <strong>💡 Чечим:</strong> Эгерде индекске муктаж болсоңуз, <code>arr.entries()</code> колдонуңуз:
+                            <pre><code>let arr = ['алма', 'банан', 'апельсин'];
+
+// entries() менен индекс менен маанини алуу
+for (let [index, meyve] of arr.entries()) {
+    console.log(index + ": " + meyve);
+}
+// Натыйжа:
+// 0: алма
+// 1: банан
+// 2: апельсин</code></pre>
+                        </div>
+                    </div>
+
+                    <h4>2. "Объекттер менен колдонулбайт" деген эмне?</h4>
+                    <div class="step">
+                        <p><strong>Проблема:</strong> For...of циклди объекттер менен түздөн-түз колдонбоого болот, анткени объекттер итерациялануучу эмес (айланууга жарабайт).</p>
+                        <div class="example">
+                            <div class="example-title">Мисал - Объект менен иштөөдө:</div>
+                            <pre><code>let person = {
+    name: "Айбек",
+    age: 25,
+    city: "Бишкек"
+};
+
+// For...of менен - КОЛДОНУЛБАЙТ! (Ката берет)
+for (let value of person) {
+    console.log(value); // Error! Объекттер итерациялануучу эмес
+}
+
+// For...in менен - КОЛДОНОТ!
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+// Натыйжа:
+// name: Айбек
+// age: 25
+// city: Бишкек</code></pre>
+                        </div>
+                        <div class="tip">
+                            <strong>💡 Чечимдер:</strong> Объекттерди айлануу үчүн:
+                            <ul>
+                                <li><strong>For...in цикл</strong> - объекттердин касиеттерин айлануу үчүн</li>
+                                <li><strong>Object.keys()</strong> - ключтарды массивге айландырып, for...of менен айлануу</li>
+                                <li><strong>Object.values()</strong> - маанилерди массивге айландырып, for...of менен айлануу</li>
+                            </ul>
+                            <pre><code>let person = {name: "Айбек", age: 25, city: "Бишкек"};
+
+// 1-чи ыкма: Object.keys() менен
+for (let key of Object.keys(person)) {
+    console.log(key + ": " + person[key]);
+}
+
+// 2-чи ыкма: Object.values() менен
+for (let value of Object.values(person)) {
+    console.log(value);
+}
+
+// 3-чү ыкма: Object.entries() менен
+for (let [key, value] of Object.entries(person)) {
+    console.log(key + ": " + value);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Эскертүү:</strong> For...of циклди колдонгондо:
+                    <ul>
+                        <li>Массивдер жана саптар үчүн идеалдуу</li>
+                        <li>Объекттер үчүн for...in же Object.keys() колдонуңуз</li>
+                        <li>Индекске муктаж болсоңуз, arr.entries() колдонуңуз</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Кеңештер -->
+            <section>
+                <h2>💡 Кеңештер жана Эң Жакшы Практикалар</h2>
+
+                <h3>1. Массивди айланганда</h3>
+                <ul>
+                    <li>Индексти 0дон баштаңыз: <code>let i = 0</code></li>
+                    <li>Шартты туура коюңуз: <code>i < arr.length</code> (эмес <code>i <= arr.length</code>)</li>
+                    <li>Өзгөрүүнү унутпаңыз: <code>i++</code></li>
+                </ul>
+
+                <h3>2. Өзгөрмөлөрдү атаганда</h3>
+                <ul>
+                    <li>Маанилүү аталыштар колдонуңуз: <code>i</code>, <code>j</code>, <code>k</code> (индекстер үчүн)</li>
+                    <li>Узун аталыштар колдонбоңуз: <code>index</code> ордуна <code>i</code></li>
+                </ul>
+
+                <h3>3. Кодду окууга оңой кылуу</h3>
+                <ul>
+                    <li>Циклдин ичиндеги кодду кыска кармаңыз</li>
+                    <li>Күрдүү логиканы функцияга чыгарыңыз</li>
+                    <li>Комментарийлерди колдонуңуз</li>
+                </ul>
+
+                <h3>4. Производительность</h3>
+                <ul>
+                    <li>Массивдин узундугун циклдин ичинде эсептебеңиз: <code>for (let i = 0; i < arr.length; i++)</code> - бул жакшы</li>
+                    <li>Эгерде узундукту билсеңиз, аны сактаңыз: <code>let len = arr.length; for (let i = 0; i < len; i++)</code></li>
+                </ul>
+            </section>
+
+            <!-- Шпаргалка -->
+            <section>
+                <h2>📝 Шпаргалка</h2>
+
+                <h3>Негизги синтаксис:</h3>
+                <pre><code>for (let i = 0; i < 10; i++) {
+    // Код
+}</code></pre>
+
+                <h3>Массивди айлануу:</h3>
+                <pre><code>for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}</code></pre>
+
+                <h3>Тескери багытта:</h3>
+                <pre><code>for (let i = arr.length - 1; i >= 0; i--) {
+    console.log(arr[i]);
+}</code></pre>
+
+                <h3>2ге көбөйтүү:</h3>
+                <pre><code>for (let i = 0; i < 10; i += 2) {
+    console.log(i);
+}</code></pre>
+
+                <h3>Break менен токтотуу:</h3>
+                <pre><code>for (let i = 0; i < 10; i++) {
+    if (i === 5) break;
+    console.log(i);
+}</code></pre>
+
+                <h3>Continue менен өткөрүп жиберүү:</h3>
+                <pre><code>for (let i = 0; i < 10; i++) {
+    if (i % 2 === 0) continue;
+    console.log(i);
+}</code></pre>
+            </section>
+
+            <!-- Практикалык тапшырмалар -->
+            <section class="tasks-section">
+                <h2 style="text-align: center; color: #667eea; font-size: 2.5em; margin-bottom: 20px;">
+                    🎯 Практикалык Тапшырмалар
+                </h2>
+                <p style="text-align: center; color: #666; font-size: 1.1em; margin-bottom: 30px;">
+                    Төмөнкү тапшырмаларды чечип, for циклди практикалык жактан үйрөнүңүз. 
+                    Ар бир тапшырмада кеңештер, талаптар жана түшүндүрмөлөр бар.
+                </p>
+
+                <!-- Башталгыч деңгээл -->
+                <div class="category" style="margin-top: 0;">🌱 Башталгыч деңгээл</div>
+
+                <div class="task-card">
+                    <span class="task-level level-beginner">Башталгыч</span>
+                    <div class="task-number">Тапшырма 1: Жөнөкөй кайталоо</div>
+                    <div class="task-description">
+                        For циклди колдонуп, 1ден 10го чейинки бардык сандарды консольго чыгарыңыз. 
+                        Ар бир санды "Сан: X" форматында басып чыгарыңыз.
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: For циклдин синтаксиси: <code>for (let i = 1; i <= 10; i++)</code>. 
+                        Ар бир кайталоодо <code>console.log("Сан: " + i)</code> колдонуңуз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>1ден 10го чейинки бардык сандарды басып чыгарыңыз</li>
+                            <li>Ар бир санды "Сан: X" форматында көрсөтүңүз</li>
+                            <li>Бардык 10 сан чыгарылышы керек</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>for (let i = 1; i <= 10; i++) {
+    console.log("Сан: " + i);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-beginner">Башталгыч</span>
+                    <div class="task-number">Тапшырма 2: Массивдин суммасын эсептөө</div>
+                    <div class="task-description">
+                        Төмөнкү массивдин бардык элементтеринин суммасын эсептеңиз:
+                        <div class="code-block">let numbers = [5, 10, 15, 20];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Бир сумма өзгөрмөсүн түзүп (sum = 0), циклдин ичинде ар бир элементин кошуңуз. 
+                        Натыйжа: 50 болушу керек.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Бир сумма өзгөрмөсүн түзүңүз (баштапкы маани 0)</li>
+                            <li>Циклдин ичинде ар бир элементин кошуңуз</li>
+                            <li>Натыйжаны консольго чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [5, 10, 15, 20];
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+}
+
+console.log(sum); // 50</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-beginner">Башталгыч</span>
+                    <div class="task-number">Тапшырма 3: Массивди айлануу</div>
+                    <div class="task-description">
+                        Төмөнкү массивди for цикл менен айланып, ар бир элементин консольго чыгарыңыз:
+                        <div class="code-block">let meyveler = ['алма', 'банан', 'апельсин', 'гүрч'];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Индексти 0дон баштап, <code>i < meyveler.length</code> шартын колдонуңуз. 
+                        Элементтерге <code>meyveler[i]</code> менен жетиңиз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Индексти 0дон баштаңыз</li>
+                            <li>Шартты <code>i < meyveler.length</code> коюңуз</li>
+                            <li>Бардык 4 элемент чыгарылышы керек</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let meyveler = ['алма', 'банан', 'апельсин', 'гүрч'];
+
+for (let i = 0; i < meyveler.length; i++) {
+    console.log(meyveler[i]);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-beginner">Башталгыч</span>
+                    <div class="task-number">Тапшырма 4: Жуп сандарды басып чыгаруу</div>
+                    <div class="task-description">
+                        For циклди колдонуп, 2ден 20ге чейинки бардык жуп сандарды консольго чыгарыңыз.
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Индексти 2ден баштап, 2ге көбөйтүңүз (<code>i += 2</code>). 
+                        Же шарттуу текшерип, жуп сандарды гана чыгарыңыз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>2ден 20ге чейинки сандарды текшериңиз</li>
+                            <li>Жуп сандарды гана чыгарыңыз</li>
+                            <li>Натыйжа: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>// 1-чи ыкма (i += 2 менен)
+for (let i = 2; i <= 20; i += 2) {
+    console.log(i);
+}
+
+// 2-чи ыкма (шарт менен)
+for (let i = 2; i <= 20; i++) {
+    if (i % 2 === 0) {
+        console.log(i);
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-beginner">Башталгыч</span>
+                    <div class="task-number">Тапшырма 5: Массивдин узундугун эсептөө</div>
+                    <div class="task-description">
+                        For циклди колдонуп, массивдин узундугун эсептеңиз (length касиетин колдонбостон). 
+                        Элементтердин санын санаңыз.
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Бир санагыч өзгөрмө түзүп (count = 0), циклдин ичинде ар бир элементин санаңыз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>length касиетин колдонбоңуз</li>
+                            <li>Элементтердин санын санаңыз</li>
+                            <li>Натыйжаны консольго чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let arr = [1, 2, 3, 4, 5];
+let count = 0;
+
+for (let i = 0; arr[i] !== undefined; i++) {
+    count++;
+}
+
+console.log("Узундук: " + count); // 5</code></pre>
+                    </div>
+                </div>
+
+                <!-- Орто деңгээл -->
+                <div class="category">🎯 Орто деңгээл</div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 6: Эң чоң санды табуу</div>
+                    <div class="task-description">
+                        Төмөнкү массивден эң чоң санды табыңыз:
+                        <div class="code-block">let numbers = [12, 45, 8, 130, 44, 3, 25];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Биринчи элементин эң чоң деп эсептеңиз (max = numbers[0]), 
+                        андан кийин ар бир элементин салыштырыңыз. Эгерде элемент чоңураак болсо, аны эң чоң деп белгилеңиз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Бир max өзгөрмөсүн түзүңүз (баштапкы маани numbers[0])</li>
+                            <li>Циклдин ичинде ар бир элементин max менен салыштырыңыз</li>
+                            <li>Эң чоң санды консольго чыгарыңыз (130 болушу керек)</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [12, 45, 8, 130, 44, 3, 25];
+let max = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+        max = numbers[i];
+    }
+}
+
+console.log("Эң чоң сан: " + max); // 130</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 7: Эң кичине санды табуу</div>
+                    <div class="task-description">
+                        Төмөнкү массивден эң кичине санды табыңыз:
+                        <div class="code-block">let numbers = [12, 45, 8, 130, 44, 3, 25];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Эң чоң санды табууга окшош, бирок бул жолу <code>numbers[i] < min</code> шартын колдонуңуз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Бир min өзгөрмөсүн түзүңүз</li>
+                            <li>Эң кичине санды табыңыз</li>
+                            <li>Натыйжаны консольго чыгарыңыз (3 болушу керек)</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [12, 45, 8, 130, 44, 3, 25];
+let min = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] < min) {
+        min = numbers[i];
+    }
+}
+
+console.log("Эң кичине сан: " + min); // 3</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 8: Break менен циклди токтотуу</div>
+                    <div class="task-description">
+                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] массивди айланып, 7ге жеткенде циклди токтотуңуз. 
+                        Break колдонуңуз.
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Циклдин ичинде шарттуу текшерип, эгерде элемент 7ге барабар болсо, 
+                        <code>break</code> колдонуңуз. Натыйжада 1ден 6га чейинки сандар чыгарылышы керек.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Break колдонуңуз</li>
+                            <li>7ге жеткенде циклди токтотуңуз</li>
+                            <li>1ден 6га чейинки сандар чыгарылышы керек</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] === 7) {
+        break; // Циклди токтотуу
+    }
+    console.log(numbers[i]);
+}
+// Натыйжа: 1, 2, 3, 4, 5, 6</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 9: Continue менен так сандарды табуу</div>
+                    <div class="task-description">
+                        1ден 20го чейинки бардык так сандарды (1, 3, 5, 7, ...) консольго чыгарыңыз. 
+                        Continue колдонуңуз.
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: For цикл менен 1ден 20ге чейин айланып, эгерде сан жуп болсо 
+                        (i % 2 === 0), <code>continue</code> колдонуңуз. Так сандар гана чыгарылышы керек.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Continue колдонуңуз</li>
+                            <li>Жуп сандарды өткөрүп жибериңиз</li>
+                            <li>Так сандарды гана чыгарыңыз (1, 3, 5, 7, 9, 11, 13, 15, 17, 19)</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>for (let i = 1; i <= 20; i++) {
+    if (i % 2 === 0) {
+        continue; // Жуп сандарды өткөрүп жиберүү
+    }
+    console.log(i);
+}
+// Натыйжа: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 10: Массивди тескери багытта айлануу</div>
+                    <div class="task-description">
+                        Төмөнкү массивди тескери багытта (акыркы элементинен биринчиге чейин) айланып, 
+                        ар бир элементин консольго чыгарыңыз:
+                        <div class="code-block">let arr = ['а', 'б', 'в', 'г', 'д'];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Индексти <code>arr.length - 1</code>ден баштап, 0го чейин азайтыңыз. 
+                        Натыйжа: д, г, в, б, а болушу керек.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Индексти arr.length - 1ден баштаңыз</li>
+                            <li>Индексти i-- менен азайтыңыз</li>
+                            <li>Шарт: i >= 0</li>
+                            <li>Тескери тартипте чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let arr = ['а', 'б', 'в', 'г', 'д'];
+
+for (let i = arr.length - 1; i >= 0; i--) {
+    console.log(arr[i]);
+}
+// Натыйжа: д, г, в, б, а</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-intermediate">Орто</span>
+                    <div class="task-number">Тапшырма 11: Элементтерди чыпкалоо</div>
+                    <div class="task-description">
+                        Төмөнкү массивден 10дон чоң сандарды чыпкалап, жаңы массивге кошуңыз:
+                        <div class="code-block">let numbers = [5, 12, 8, 130, 44, 3, 25];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Бир жаңы массив түзүп, циклдин ичинде шарттуу текшерип, 
+                        эгерде элемент 10дон чоң болсо, аны жаңы массивге кошуңуз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Бир жаңы массив түзүңүз</li>
+                            <li>10дон чоң сандарды чыпкалаңыз</li>
+                            <li>Натыйжаны консольго чыгарыңыз ([12, 130, 44, 25])</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [5, 12, 8, 130, 44, 3, 25];
+let result = [];
+
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 10) {
+        result.push(numbers[i]);
+    }
+}
+
+console.log(result); // [12, 130, 44, 25]</code></pre>
+                    </div>
+                </div>
+
+                <!-- Кыйын деңгээл -->
+                <div class="category">🔥 Кыйын деңгээл</div>
+
+                <div class="task-card">
+                    <span class="task-level level-advanced">Кыйын</span>
+                    <div class="task-number">Тапшырма 12: Вложен циклдер (Nested Loops)</div>
+                    <div class="task-description">
+                        Вложен циклдерди колдонуп, көбөйтүү таблицасын (1ден 5ке чейин) түзүңүз:
+                        <div class="code-block">1 x 1 = 1
+1 x 2 = 2
+...
+5 x 5 = 25</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Эки for циклди колдонуңуз: биринчиси 1ден 5ке чейин, экинчиси да 1ден 5ке чейин. 
+                        Ички циклдин ичинде көбөйтүүнү эсептеңиз.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>Эки for циклди колдонуңуз (вложен)</li>
+                            <li>Биринчи цикл 1ден 5ке чейин</li>
+                            <li>Экинчи цикл 1ден 5ке чейин</li>
+                            <li>Ар бир көбөйтүүнү "X x Y = Z" форматында чыгарыңыз</li>
+                            <li>Бардык 25 көбөйтүү чыгарылышы керек</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>for (let i = 1; i <= 5; i++) {
+    for (let j = 1; j <= 5; j++) {
+        console.log(i + " x " + j + " = " + (i * j));
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-advanced">Кыйын</span>
+                    <div class="task-number">Тапшырма 13: Массивдин ичиндеги массивдерди айлануу</div>
+                    <div class="task-description">
+                        Төмөнкү вложен массивдин бардык элементтерин басып чыгарыңыз:
+                        <div class="code-block">let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Эки for циклди колдонуңуз: биринчиси - сырткы массивди айланат, 
+                        экинчиси - ички массивдерди айланат. Натыйжа: 1, 2, 3, 4, 5, 6, 7, 8, 9
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>Эки for циклди колдонуңуз (вложен)</li>
+                            <li>Сырткы цикл matrix массивди айланат</li>
+                            <li>Ички цикл ар бир ички массивди айланат</li>
+                            <li>Бардык элементтерди консольго чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+        console.log(matrix[i][j]);
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-advanced">Кыйын</span>
+                    <div class="task-number">Тапшырма 14: Көп операцияларды бириктирүү</div>
+                    <div class="task-description">
+                        Төмөнкү массивден 10дон чоң сандарды чыпкалап, аларды эки эсеге көбөйтүп, 
+                        суммасын эсептеңиз. Бардыгын бир циклде аткарыңыз:
+                        <div class="code-block">let numbers = [5, 12, 8, 130, 44, 3, 25, 15];</div>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Бир циклде эки операцияны аткарыңыз: чыпкалоо жана көбөйтүү. 
+                        Натыйжа: (12*2) + (130*2) + (44*2) + (25*2) + (15*2) = 452
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>10дон чоң сандарды чыпкалаңыз</li>
+                            <li>Чыпкаланган сандарды эки эсеге көбөйтүңүз</li>
+                            <li>Сумманы эсептеңиз</li>
+                            <li>Натыйжаны консольго чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let numbers = [5, 12, 8, 130, 44, 3, 25, 15];
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 10) {
+        sum += numbers[i] * 2;
+    }
+}
+
+console.log("Сумма: " + sum); // 452</code></pre>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <span class="task-level level-advanced">Кыйын</span>
+                    <div class="task-number">Тапшырма 15: Объекттердин массивин иштетүү</div>
+                    <div class="task-description">
+                        Төмөнкү массивди иштетиңиз:
+                        <div class="code-block">let students = [
+    {name: 'Айбек', score: 85, grade: 'B'},
+    {name: 'Бакыт', score: 92, grade: 'A'},
+    {name: 'Чынара', score: 78, grade: 'C'},
+    {name: 'Данияр', score: 95, grade: 'A'},
+    {name: 'Элнура', score: 88, grade: 'B'}
+];</div>
+                        Тапшырмалар:
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Бардык студенттердин орточо баллын табыңыз</li>
+                            <li>А деңгээлиндеги (grade === 'A') студенттердин аттарын чыгарыңыз</li>
+                            <li>80ден жогору балл алган студенттердин санын эсептеңиз</li>
+                        </ul>
+                    </div>
+                    <div class="task-hint">
+                        💡 Кеңеш: Үч цикл колдонуңуз: биринчиси - орточо балл эсептөө, 
+                        экинчиси - А деңгээлиндеги студенттерди табуу, үчүнчүсү - 80ден жогору балл алгандарды саноо.
+                    </div>
+                    <div class="task-requirements">
+                        <div class="task-requirements-title">📋 Талаптар:</div>
+                        <ul>
+                            <li>For циклди колдонуңуз</li>
+                            <li>Бардык студенттердин орточо баллын эсептеңиз</li>
+                            <li>А деңгээлиндеги студенттердин аттарын чыгарыңыз</li>
+                            <li>80ден жогору балл алган студенттердин санын эсептеңиз</li>
+                            <li>Бардык натыйжаларды консольго чыгарыңыз</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <div class="example-title">Чечим:</div>
+                        <pre><code>let students = [
+    {name: 'Айбек', score: 85, grade: 'B'},
+    {name: 'Бакыт', score: 92, grade: 'A'},
+    {name: 'Чынара', score: 78, grade: 'C'},
+    {name: 'Данияр', score: 95, grade: 'A'},
+    {name: 'Элнура', score: 88, grade: 'B'}
+];
+
+// 1. Орточо балл
+let sum = 0;
+for (let i = 0; i < students.length; i++) {
+    sum += students[i].score;
+}
+let average = sum / students.length;
+console.log("Орточо балл: " + average); // 87.6
+
+// 2. А деңгээлиндеги студенттер
+console.log("А деңгээлиндеги студенттер:");
+for (let i = 0; i < students.length; i++) {
+    if (students[i].grade === 'A') {
+        console.log(students[i].name);
+    }
+}
+
+// 3. 80ден жогору балл алгандар
+let count = 0;
+for (let i = 0; i < students.length; i++) {
+    if (students[i].score > 80) {
+        count++;
+    }
+}
+console.log("80ден жогору балл алгандар: " + count); // 4</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
